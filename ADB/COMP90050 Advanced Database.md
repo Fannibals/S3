@@ -188,3 +188,24 @@
 
 
 
+##### Transaction Processing
++ Definition
+  + A transaction is collection of operations that need to be performed on the physical and abstract application state.
+
++ ACID properties
+  + Atomicity
+    - A transaction's changes to the state are atomic implying : ==
+      - Either all actions happen or none happen
+  + Consistency
+    - Transaction are a correct transformation of the state.
+    - Actions taken as a whole by a transaction do not violate the integrity of the application state.
+  + Isolation
+    - Even when several transactions are executed simultaneously, it appears to each transaction T that 
+      others executed either happen before T or after T but not at the same time.
+  + Durability
+    - copies for preventing losing information
+
++ Reliable communication
+  + recording every msg sent or received on stable storage
+  + time
+  + 
