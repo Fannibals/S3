@@ -187,7 +187,10 @@
 + Fastest Computer IBN Summit
 
 
+----
 
+
+#### Lecture 4
 ##### Transaction Processing
 + Definition
   + A transaction is collection of operations that need to be performed on the physical and abstract application state.
@@ -209,3 +212,108 @@
   + recording every msg sent or received on stable storage
   + time
   + 
+
+
+
+
+
++ Flat Transactions
+	+ In a flat transaction, each transaction is decoupled from and independent of other transactions in the system. Another transaction cannot start in the same thread until the current transaciton ends.
+
+	+ exec sql BEGIN WORK
+		+ delta:
+			+ positive means debit
+			- negative means credit
+
+	+ :delta => preprocess the c variable
+
+
++ Limitations of Flat Transactions
+	+ Flat transactions do not model many real applications
+		+ booking flight (cancel from the middle part)
+	+ waste
+
+	+ solutions：
+		+ Transaction with save points
+
++ Nested Transactions
+	+ Rules:
+		+ Commit rule
+			+ parent > child
+		+ Roll back rule
+		+ Visibility Rules
+
+
++ TP monitor computing styles
+	+ batch processing
+	+ Time-sharing
+	+ Real-Time processing
+
++ TP services
+	+ Hetergeneity
+	+ Control communication
+	+ Terminal management
+	+ Presentation service
+	+ Context management
+	+ Start/Restart
+
++ TP process structure
+
+
+
+#### Lecture Set4
++ Concurrency Problems
+
++ Implementation of exclusive access (atomic operations)
+	+ Dekker's algorithm
+		+ busy waiting
+		+ takes lots of storage space
+		+ efficient if the lock contention is low
+	+ Lock / Unlock -- Spin Locks
+		+ ```if (*lock == 1){*lock = 0; return (true)}
+			else return (false) ```
+
+	+ Lock Manager
+		+ ``` if (*cell == *old) { *cell = *new; return TRUE;}
+				else { *old = *cell; return FALSE;}```
+
+		+ Counter => Global varaible == cell
+		+ temp => local var for each thread == old
+
+		+ if the counter value == one I read
+			+ => no body else came between
+			+ change it to the new value
+
+		+ NULL in sem means free, no one is using the resource
+
+
++ Deadlocks
+	+ Solutions
+		+ have enough resources so that no waiting occurs
+		+ simply do not allow a process to wait simply rollback.
+			- this can create live locks which are worse than deadlocks
+		+ Linearly order the resources and request of resources should follow this order
+			- there should no cycle here
+
+
+
+	+ Deadlock avoidance/mitigation
+		+ Pre-declare all the resources that are needed and allocate all the resources in a single request.
+		+ Allow a transaction to wait for certain maximum time 
+		+ Periodically check the resource dependency graph for cycles.
+		+ Many distriubted database systems maintain only local dependency graphs and use time outs for global deadlocks.
+		+ Phantom Deadlocks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
